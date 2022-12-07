@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from Client import *
 from Calibration import *
+from Command import COMMAND as cmd
 class MyWindow(QMainWindow,Ui_client):
     def __init__(self):
         super(MyWindow,self).__init__()
@@ -674,6 +675,7 @@ class MyWindow(QMainWindow,Ui_client):
 
     def refresh_image(self):
         if self.client.video_flag == False:
+            # The camera is always on, get the image from server
             height, width, bytesPerComponent=self.client.image.shape
             #print (height, width, bytesPerComponent)
             cv2.cvtColor(self.client.image, cv2.COLOR_BGR2RGB, self.client.image)

@@ -12,9 +12,14 @@ from Thread import *
 import multiprocessing
 from PIL import Image, ImageDraw
 from Command import COMMAND as cmd
+import time
+
+from Track import *
+
 class Client:
     def __init__(self):
         self.face=Face()
+        self.track = Track()
         self.pid=Incremental_PID(1,0,0.0025)
         self.tcp_flag=False
         self.video_flag=True
@@ -58,10 +63,27 @@ class Client:
                 jpg=self.connection.read(leng[0])
                 if self.is_valid_image_4_bytes(jpg):
                     if self.video_flag:
+                        # command = cmd.CMD_MOVE+ "#"+str(1)+"#"+str(0)+"#"+str(15)\
+                        #         +"#"+str(5)+"#"+str(-10) +'\n'
+                        # print(command)
+                        # self.send_data(command)
                         self.image = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
+
+                        # data_forward = ['CMD_MOVE', '1', '0', '25', '5', '0']
+                        # data_left = ['CMD_MOVE', '1', '0', '15', '5', '-10']
+                        # data_right = ['CMD_MOVE', '1', '0', '15', '5', '10']
+
                         if self.fece_id == False and self.fece_recognition_flag:
-                            self.face.face_detect(self.image)
+                            # self.face.face_detect(self.image)
+                            command = self.track.face_detection(self.image)
+                            # print('detecting...')
+                            # print(command)
+                            if command == None:
+                                continue
+                            else:
+                                self.send_data(command)
                         self.video_flag=False
+                time.sleep(0.5)
             except BaseException as e:
                 print (e)
                 break
