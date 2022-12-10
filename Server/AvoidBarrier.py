@@ -36,12 +36,16 @@ def move_forward():
 
 if __name__=='main':
     while True:
+        move_forward()
         if sonic.getDistance()<0.2:
-            for i in range(12):
+            i=0
+            while i<12:
                 s1.setServoAngle(60+i*5)
+                i=i+1
                 if sonic.getDistance()>0.5:
                     s1.setServoAngle(90)
                     move_dir(40, 60+i*5)
                     break
-        move_forward()
+        
+        
 
