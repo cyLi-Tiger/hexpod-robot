@@ -25,6 +25,7 @@ class Control:
         self.flag=0x00
         self.timeout=0
         self.height=-25
+        #The coordinate of six legs points with respect to the center of the body.
         self.body_point=[[137.1 ,189.4 , self.height], [225, 0, self.height], [137.1 ,-189.4 , self.height], 
                          [-137.1 ,-189.4 , self.height], [-225, 0, self.height], [-137.1 ,189.4 , self.height]]
         self.calibration_leg_point=self.readFromTxt('point')
@@ -352,7 +353,12 @@ class Control:
             self.coordinateTransformation(point)
             self.setLegAngle()
  
-    def run(self,data,Z=40,F=64):#example : data=['CMD_MOVE', '1', '0', '25', '10', '0']
+    def run(self,data,Z=40,F=64):
+        #data [command, gait mode, x, y, F, angle]
+        #negative x for moving left, posotive x for moving right
+        #negative y for moving backward, posotive y for moving forward
+        #angle for angular velocity, posotive for clockwise, vise versa. 
+        #example : data=['CMD_MOVE', '1', '0', '25', '10', '0']
         gait=data[1]
         x=self.restriction(int(data[2]),-35,35)
         y=self.restriction(int(data[3]),-35,35)
