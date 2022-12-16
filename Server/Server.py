@@ -107,7 +107,7 @@ class Server:
         encoder = JpegEncoder(q=90)
         camera.start_recording(encoder, FileOutput(output),quality=Quality.VERY_HIGH) 
 
-        def is_valid_image_4_bytes(self,buf): 
+        def is_valid_image_4_bytes(buf): 
             print("test image data")
             bValid = True
             if buf[6:10] in (b'JFIF', b'Exif'):     
