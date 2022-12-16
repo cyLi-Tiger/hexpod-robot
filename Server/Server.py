@@ -108,6 +108,7 @@ class Server:
         camera.start_recording(encoder, FileOutput(output),quality=Quality.VERY_HIGH) 
 
         def is_valid_image_4_bytes(self,buf): 
+            print("test image data")
             bValid = True
             if buf[6:10] in (b'JFIF', b'Exif'):     
                 if not buf.rstrip(b'\0\r\n').endswith(b'\xff\xd9'):
