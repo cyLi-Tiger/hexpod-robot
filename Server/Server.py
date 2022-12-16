@@ -22,6 +22,8 @@ from PIL import Image, ImageDraw
 
 from Track import *
 
+allData = None
+
 class StreamingOutput(io.BufferedIOBase):
     def __init__(self):
         self.frame = None
@@ -90,6 +92,7 @@ class Server:
             print(e)
     
     def transmission_video(self):
+        global allData
         # try:
         #     self.connection,self.client_address = self.server_socket.accept()
         #     self.connection=self.connection.makefile('wb')
@@ -146,7 +149,8 @@ class Server:
                     if command == None:
                         continue
                     else:
-                        self.receive_instruction(command)
+                        # self.receive_instruction(command)
+                        allData = command
 
             except Exception as e:
                 camera.stop_recording()
@@ -155,7 +159,7 @@ class Server:
                 break
     
     # Change this by receiving another arg
-    def receive_instruction(self, allData):
+    def receive_instruction(self,):
         # try:
         #     self.connection1,self.client_address1 = self.server_socket1.accept()
         #     print ("Client connection successful !")
