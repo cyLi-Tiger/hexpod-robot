@@ -153,7 +153,7 @@ class Server:
                     else:
                         # self.receive_instruction(command)
                         allData = command
-
+                time.sleep(1)
             except Exception as e:
                 camera.stop_recording()
                 camera.close()
