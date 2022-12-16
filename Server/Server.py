@@ -157,7 +157,7 @@ class Server:
             except Exception as e:
                 camera.stop_recording()
                 camera.close()
-                print ("End transmit ... " )
+                print ("End transmit ... ", e )
                 break
     
     # Change this by receiving another arg
