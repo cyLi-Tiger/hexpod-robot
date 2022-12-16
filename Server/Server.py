@@ -108,7 +108,7 @@ class Server:
         camera.start_recording(encoder, FileOutput(output),quality=Quality.VERY_HIGH) 
 
         def is_valid_image_4_bytes(buf): 
-            print("test image data")
+            # print("test image data")
             bValid = True
             if buf[6:10] in (b'JFIF', b'Exif'):     
                 if not buf.rstrip(b'\0\r\n').endswith(b'\xff\xd9'):
@@ -134,7 +134,7 @@ class Server:
                 # face recognition
                 jpg=frame
                 if is_valid_image_4_bytes(jpg):
-                    print("image received")
+                    # print("image received")
                     # command = cmd.CMD_MOVE+ "#"+str(1)+"#"+str(0)+"#"+str(15)\
                     #         +"#"+str(5)+"#"+str(-10) +'\n'
                     # print(command)
@@ -146,7 +146,7 @@ class Server:
                     # data_right = ['CMD_MOVE', '1', '0', '15', '5', '10']
 
                     command = self.track.face_detection(self.image)
-                    print('detecting...')
+                    # print('detecting...')
                     print(command)
                     if command == None:
                         continue
@@ -185,7 +185,7 @@ class Server:
                 continue
             else:
                 cmdArray=allData.split('\n')
-                print(cmdArray)
+                # print(cmdArray)
                 if cmdArray[-1] !="":
                     cmdArray==cmdArray[:-1]
             for oneCmd in cmdArray:
