@@ -169,7 +169,7 @@ class Server:
         # self.server_socket1.close()
         
         while True:
-            print("waiting for command")
+            # print("waiting for command")
         #     try:
         #         allData=self.connection1.recv(1024).decode('utf-8')
         #     except:
