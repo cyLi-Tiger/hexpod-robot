@@ -176,7 +176,7 @@ class Server:
         #             break
         #         else:
         #             break
-            if allData=="" and self.tcp_flag:
+            if allData==None and self.tcp_flag:
                 self.reset_server()
             else:
                 cmdArray=allData.split('\n')
