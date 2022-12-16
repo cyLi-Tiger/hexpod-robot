@@ -159,7 +159,7 @@ class Server:
                 break
     
     # Change this by receiving another arg
-    def receive_instruction(self,):
+    def receive_instruction(self, allData):
         # try:
         #     self.connection1,self.client_address1 = self.server_socket1.accept()
         #     print ("Client connection successful !")
@@ -176,8 +176,10 @@ class Server:
         #             break
         #         else:
         #             break
-            if allData==None and self.tcp_flag:
+            if allData=="" and self.tcp_flag:
                 self.reset_server()
+            elif allData == None:
+                continue
             else:
                 cmdArray=allData.split('\n')
                 print(cmdArray)
