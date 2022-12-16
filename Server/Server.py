@@ -159,7 +159,7 @@ class Server:
                 break
     
     # Change this by receiving another arg
-    def receive_instruction(self, allData):
+    def receive_instruction(self,):
         # try:
         #     self.connection1,self.client_address1 = self.server_socket1.accept()
         #     print ("Client connection successful !")
