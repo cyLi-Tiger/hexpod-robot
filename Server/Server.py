@@ -133,6 +133,7 @@ class Server:
                 # face recognition
                 jpg=frame
                 if is_valid_image_4_bytes(jpg):
+                    print("image received")
                     # command = cmd.CMD_MOVE+ "#"+str(1)+"#"+str(0)+"#"+str(15)\
                     #         +"#"+str(5)+"#"+str(-10) +'\n'
                     # print(command)
@@ -168,6 +169,7 @@ class Server:
         # self.server_socket1.close()
         
         while True:
+            print("waiting for command")
         #     try:
         #         allData=self.connection1.recv(1024).decode('utf-8')
         #     except:
